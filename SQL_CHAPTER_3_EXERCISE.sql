@@ -102,8 +102,9 @@ Select Ename, Hiredate, TO_CHAR(hiredate, 'DAY') as "DAY"
    order of salary. Label the column EMPLOYEES_AND_THEIR_SALARIES.
 **************************************************************************************************/
 
-Select CONCAT(CONCAT(Ename,' '),rpad(Sal/1000,15,'*')) EMPLOYEES_AND_THEIR_SALARIES
-  from scott.emp;
+Select  rpad(concat(Ename,' '),((Sal*12/1000)+length(ename)+1),'*')  EMPLOYEES_AND_THEIR_SALARIES, length(rpad(concat(Ename,' '),((Sal*12/1000)+length(ename)+1),'*')) "L"
+  from  scott.emp
+  Order by sal DESC;
 
  /*************************************************************************************************
    Example 13. 
